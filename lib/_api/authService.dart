@@ -7,9 +7,11 @@ class AuthService{
   final TokenStorageService _tokenStorageService;
 
   AuthService(this._tokenStorageService);
-  Future<int> authenticateUser(String username, String password) async {
+  Future<int> authenticateUser(String tenantID, String username, String password) async {
+    _tokenStorageService.saveTenantId(tenantID);
+    String url = 'https://auth.simbo.me/auth/realms/$tenantID/protocol/openid-connect/token';
     var res = await http.post(Uri.parse(
-        'https://auth.simbo.me/auth/realms/mlibmkcom3/protocol/openid-connect/token'),
+        url),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }, body: {
@@ -19,9 +21,7 @@ class AuthService{
           "grant_type": "password",
           "scope": "email openid profile"
         });
-    print(http.BaseRequest);
     if (res.statusCode == 200) {
-     // var sessionStorageService = await SessionStorageService.getInstance();
       _tokenStorageService.saveToken(res.body);
       print(res.body);
       print('--------------access-------------------');

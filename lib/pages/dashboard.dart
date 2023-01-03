@@ -1,7 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:simbo_1/_services/sessionservice.dart';
 import 'package:simbo_1/pages/homepage.dart';
 import 'package:simbo_1/pages/recensement_step.dart';
 
@@ -23,12 +21,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    var sessionStorageService = SessionStorageService.getInstance();
-
-    Future<int?> attemptLogIn(String username, String password) async {
-      var sessionStorageService = SessionStorageService.getInstance();
-      return sessionStorageService;
-    }
 
     final items = <Widget>[
       const Icon(Icons.menu, size: 30),

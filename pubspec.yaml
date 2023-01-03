@@ -33,11 +33,13 @@ dependencies:
     sdk: flutter
 
   # Authentification
-  keycloak_flutter: ^0.0.19
-  flutter_appauth: ^4.2.1
+  # keycloak_flutter: ^0.0.19
+  # flutter_appauth: ^4.2.1
   http: ^0.13.5
   flutter_secure_storage: ^7.0.1
   dio: ^4.0.6
+  get_it: ^7.2.0
+  json_annotation: ^4.7.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -77,6 +79,7 @@ dependencies:
   flutter_typeahead: ^4.1.1
   dropdown_search: ^5.0.5
   flutter_flavor: ^3.1.1
+  hooks_riverpod: ^2.1.3
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +87,7 @@ dev_dependencies:
 
   hive_generator: ^1.1.3
   build_runner: ^2.2.0
+  json_serializable: ^6.5.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

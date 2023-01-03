@@ -25,7 +25,7 @@ class TokenModel {
       scope: json['scope'],
       sessionState: json['session_state'],
       notBeforePolicy: json['not-before-policy'],
-      expiresIn: json['expires_In'],
+      expiresIn: json['expires_in'],
       refreshExpiresIn: json['refresh_expires_in'],
       refreshToken: json['refresh_token'],
     );

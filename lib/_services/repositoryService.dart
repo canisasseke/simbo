@@ -2,9 +2,11 @@
 
 import 'package:dio/dio.dart';
 
+
 class RepositoryService {
   var dio = Dio();
-  static RepositoryService? repositoryService;
+
+   static RepositoryService? repositoryService;
 
   static Future<RepositoryService?> getInstance() async {
     if (repositoryService == null) {

@@ -1,10 +1,18 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:simbo_1/_services/authService.dart';
+import 'package:simbo_1/_api/apiService.dart';
+import 'package:simbo_1/_api/authService.dart';
+import 'package:simbo_1/_api/dioClient.dart';
+//import 'package:simbo_1/_services/authService.dart';
+import 'package:simbo_1/_services/repositoryService.dart';
+import 'package:simbo_1/di/service_locator.dart';
 import 'package:simbo_1/pages/dashboard.dart';
 
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
+  final authService = locator<AuthService>();
+  final apiService = locator<ApiService>();
   @override
   Widget build(BuildContext context) {
     TextEditingController _usernameController = TextEditingController();
@@ -15,12 +23,6 @@ class SignIn extends StatelessWidget {
           builder: (context) =>
               AlertDialog(title: Text(title), content: Text(text)),
         );
-
-    Future<int?> attemptLogIn(String username, String password) async {
-      var authService = await AuthService.getInstance();
-      return authService?.authenticateUser(username, password);
-    }
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -141,9 +143,13 @@ class SignIn extends StatelessWidget {
               ),
               onPressed: () async {
                 var username = _usernameController.text;
-                var statusCode =
-                    await attemptLogIn(username, _passwordController.text);
+                var statusCode = await authService.authenticateUser('mlibmkcom3',username, _passwordController.text);
+                    //await attemptLogIn(username, _passwordController.text);
                 if (statusCode == 200) {
+                  print('-------------------api rest----------------------');
+                  //final Response response =  await dioClient.get('/typeequipements/simple/list');
+                 final response = await apiService.getAllSecteurs();
+                  print(response);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
