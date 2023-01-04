@@ -9,8 +9,10 @@ class TokenStorageService{
    final FlutterSecureStorage _storage;
    static const String TOKEN_KEY = "TOKEN";
    static const String TENANT_KEY = "TENANT_ID";
+
    TokenStorageService(this._storage);
-  void saveToken(String token) async {
+
+   void saveToken(String token) async {
     await _storage.write(key: TOKEN_KEY, value: token);
   }
    void saveTenantId(String tenant) async {
@@ -39,7 +41,9 @@ class TokenStorageService{
     }
     return TokenModel.fromJson(jsonDecode(tokenJson)).refreshToken;
   }
-
+  Future<bool> isTokenExist() async {
+   return await _storage.containsKey(key: TOKEN_KEY);
+  }
   Future<void> deleteAllToken() async {
     _storage.deleteAll();
   }

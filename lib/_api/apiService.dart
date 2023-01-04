@@ -68,7 +68,7 @@ Future<List<TypeEquipement>> getAllTypeEquipemnts() async{
   Future<void> sendRecensement(List<Recensement> recensements) async{
   final resensementJson = recensements.map((e) => jsonEncode(e)).toList();
     try{
-      final  response = await _dioClient.post(Endpoints.recensements, data: resensementJson);
+       await _dioClient.post(Endpoints.recensements, data: resensementJson);
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       throw errorMessage;
